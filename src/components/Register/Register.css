@@ -1,0 +1,49 @@
+.register-container {
+    width: 38%;
+    margin: auto;
+    padding: 0px 0px;
+    text-align: center;
+    /* background-color: #f3f3f3; */
+    border-radius: 10px;
+}
+
+input {
+    align-items: center;
+}
+
+.input-register {
+    width: 90%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    /* background: var(--neutral-light); */
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.register-button {
+    margin-top: 10px;
+    background-color: var(--neutral-dark);
+    color: var(--neutral-light);
+    border: none;
+    border-radius: 15px;
+    padding: 0.7rem 1.9rem;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    font-size: 16px;
+}
+
+.register-button:hover {
+    background-color: #333;
+}
+
+.account-type {
+    margin: 20px 10px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+/* .account-type label {
+    margin-right: 10px;
+} */

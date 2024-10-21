@@ -1,0 +1,44 @@
+:root {
+  /* Colores Primarios */
+  --primary: #007BFF;
+  --primary-dark: #0056B3;
+
+  /* Colores Secundarios */
+  --secondary: #28A745;
+  --secondary-dark: #218838;
+  --secondary-light: #1cbd42;
+  --secondary-extra-light: #68d888;
+
+  /* Colores de Advertencia */
+  --danger: #DC3545;
+  --danger-dark: #C82333;
+  --danger-light: #ff5757;
+
+  /* Colores Neutrales */
+  --neutral-light: #F8F9FA;
+  --neutral-medium: #6C757D;
+  --neutral-dark: #343A40;
+  --neutral-extra-light: #cceef6;
+}
+
+:root {
+  /* Fuentes */
+  /* --font-family: 'Helvetica', sans-serif; */
+  --font-family: 'Roboto', sans-serif;
+}
+
+/* 
+Primario (azul): Simboliza confianza, calma y profesionalismo.
+#007BFF (Azul claro: botones, enlaces activos, énfasis)
+#0056B3 (Azul oscuro: hover, bordes destacados)
+
+Secundario (verde): Transmite éxito, crecimiento y estabilidad.
+#28A745 (Verde: acciones exitosas, notificaciones)
+
+Accento/Advertencia (rojo): Para mensajes de error o advertencia.
+#DC3545 (Rojo: errores, acciones críticas)
+
+Neutrales (grises): Usados para fondos y textos secundarios.
+#F8F9FA (Gris claro: fondo general)
+#6C757D (Gris medio: texto secundario, iconos pasivos)
+#343A40 (Gris oscuro: texto principal) */
