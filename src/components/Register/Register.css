@@ -3,7 +3,7 @@
     margin: auto;
     padding: 0px 0px;
     text-align: center;
-    /* background-color: #f3f3f3; */
+    /* background-color: var(--neutral-dark); */
     border-radius: 10px;
 }
 
