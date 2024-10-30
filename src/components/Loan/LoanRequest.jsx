@@ -59,6 +59,8 @@ function loanRequest() {
         term: '',
     });
 
+    const [loading, setLoading] = useState(false);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setLoanData({ ...loanData, [name]: value });
@@ -72,9 +74,10 @@ function loanRequest() {
             //mostrar indicador de carga
             setLoading(true);
 
-            alert(`Has solicitado un préstamo de $${amount} a pagar en ${term}.`);
+
             //esto hace que la transferencia se realice después de 1 segundo y se setee todo
             setTimeout(() => {
+                alert(`Has solicitado un préstamo de $${loanData.amount} a pagar en ${loanData.term}.`);
                 setLoading(false);
                 console.log('Préstamo solicitado:', loanData);
                 setLoanData({ amount: '', term: '' });

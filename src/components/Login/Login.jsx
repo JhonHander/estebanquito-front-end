@@ -4,18 +4,67 @@ import HeaderLogSign from '../Headers/HeaderLogSign'
 import { Navigate } from "react-router-dom";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+
+import { jwtDecoded, savedToken, getToken } from '../MainComponents/jwtManage';
 
 
 function Login() {
-    const [user, setUser] = useState('')
-    const [password, setPassword] = useState('')
+    const [loginData, setLoginData] = useState({
+        accountNumber: '',
+        password: '',
+    })
 
+    const navigate = useNavigate();
 
-    const handleLogin = (event) => {
-        event.preventDefault()
-        console.log('Usuario: ', user)
-        console.log('Contraseña: ', password)
+    const handleChange = (e) => {
+        setLoginData({
+            ...loginData,
+            [e.target.name]: e.target.value,
+        });
     }
+
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        if (!validate()) return
+
+        try {
+            const response = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+            })
+
+            const data = await response.json()
+            if (response.ok) {
+                console.log('Inicio de sesión exitoso:', data)
+                savedToken(data.token)
+                const decoded = jwtDecoded()
+                console.log('Token decodificado:', decoded)
+
+                setTimeout(() => {
+                    if (getToken()) {
+                        navigate('/')
+                    }
+                }, 1000);
+            } else {
+                console.log('Error al iniciar sesión:', data.message)
+            }
+        } catch (error) {
+            console.log('Error en el login:', error.message);
+        }
+    }
+
+    const validate = () => {
+        if (loginData.user === '' || loginData.password === '') {
+            alert('Por favor, complete todos los campos');
+            return false;
+        }
+        return true;
+    }
+
 
     return (
         <div className='father-container-login'>
@@ -28,11 +77,12 @@ function Login() {
                     <MdOutlinePhoneIphone />
                     <div className="input-container">
                         <label> Usuario</label>
-                        <input className='input-login'
+                        <input
+                            className='input-login'
                             type="text"
-                            id="username"
-                            value={user}
-                            onChange={(e) => setUser(e.target.value)}
+                            name="accountNumber"
+                            value={loginData.accountNumber}
+                            onChange={handleChange}
                             placeholder="Número de Teléfono"
                         />
                     </div>
@@ -40,11 +90,12 @@ function Login() {
                     <RiLockPasswordFill />
                     <div className="input-container">
                         <label>Contraseña</label>
-                        <input className='input-login'
+                        <input
+                            className='input-login'
                             type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            name="password"
+                            value={loginData.password}
+                            onChange={handleChange}
                             placeholder="Contraseña"
                         />
                     </div>

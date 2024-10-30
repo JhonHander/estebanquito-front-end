@@ -1,5 +1,9 @@
 import { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import CarouselInterface from "./CarouselInterface";
+import { getToken } from './jwtManage';
 import "./Carousel.css";
 import reportesBoton from '../../assets/imagen-interfaz-2.png'
 import { FaArrowAltCircleRight } from "react-icons/fa";
@@ -32,6 +36,14 @@ const interfaces = [
 ];
 
 function Carousel() {
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!getToken()) {
+            navigate('/login');
+        }
+    }, [navigate]);
+
     const [currentIndex, setCurrentIndex] = useState(0);
     console.log(currentIndex);
 
@@ -56,34 +68,4 @@ function Carousel() {
     );
 }
 
-
-
 export default Carousel;
-
-
-
-
-// function Carrusel({ opciones }) {
-//     const [opcionSeleccionada, setOpcionSeleccionada] = useState(0);
-//     console.log(opcionSeleccionada);
-//     return (
-//         <div className="carrusel-container">
-//             <div className="opciones">
-//                 {opciones.map((opcion, index) => (
-//                     <button
-//                         key={index}
-//                         className={index === opcionSeleccionada ? 'active' : ''}
-//                         onClick={() => setOpcionSeleccionada(index)}
-//                     >
-//                         {opcion.titulo}
-//                     </button>
-//                 ))}
-//             </div>
-//             <div className="contenido">
-//                 {opciones[opcionSeleccionada].contenido}
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default Carrusel;

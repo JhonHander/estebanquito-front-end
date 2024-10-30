@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Register.css';
+import { useNavigate } from "react-router-dom";
 
 function Register() {
 
@@ -11,6 +12,8 @@ function Register() {
         type: 'Corriente',
     });
     const [message, setMessage] = useState('');
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setRegisterData({
@@ -37,9 +40,16 @@ function Register() {
 
             // console.log('Respuesta:', data);
             if (response.ok) {
-                setMessage(`Registro exitoso bienvenido ${data.name} a Estebanquito`);
+                setMessage(`Registro exitoso bienvenido a Estebanquito`);
+                console.log('Registro exitoso:', data);
+
+                setTimeout(() => {
+                    // window.location.href = '/login';
+                    navigate('/login');
+                }, 1000);
             } else {
                 setMessage(data.message || 'Error al registrarse. Intentalo de nuevo o más tarde');
+
             }
             setRegisterData({ accountNumber: '', name: '', email: '', password: '', type: 'Ahorros' });
         } catch (error) {
@@ -49,12 +59,14 @@ function Register() {
     };
 
     const validate = () => {
-        if (registerData.nombre === '' || registerData.email === '' || registerData.contraseña === '' || registerData.numero_cuenta === '') {
+        if (registerData.accountNumber === '' || registerData.name === '' || registerData.email === '' || registerData.password === '') {
             alert('Por favor, complete todos los campos');
             return false;
         }
         return true;
     }
+
+
 
     return (
         <div className='father-container-register'>
@@ -68,7 +80,6 @@ function Register() {
                         <input
                             className="input-login"
                             type="text"
-                            label="Número de celular"
                             name="accountNumber"
                             placeholder="Ingrese su número de celular"
                             value={registerData.accountNumber}
