@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './Register.css';
-import HeaderLogSign from '../Headers/HeaderLogSign'
-import axios, { Axios } from 'axios';
 
 function Register() {
 
@@ -10,23 +8,9 @@ function Register() {
         name: '',
         email: '',
         password: '',
-        type: 'Ahorros',
+        type: 'Corriente',
     });
     const [message, setMessage] = useState('');
-
-    const [newInterface, setNewInterface] = useState(null);
-
-    // axios.post('http://localhost:3000/api/register', {
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     data: JSON.stringify(registerData),
-    // }).then((response) => {
-    //     console.log('Respuesta:', response.data);
-    //     setMessage('Registro exitoso');
-    // }).catch((error) => {
-    //     console.log('Error en el registro:', error);
-    // }
 
     const handleChange = (e) => {
         setRegisterData({
@@ -73,146 +57,75 @@ function Register() {
     }
 
     return (
-        <div className="register-container">
-            <HeaderLogSign />
-            <h2>Registro</h2>
-            <p>¡Es muy fácil!</p>
-            {message && <p className="message">{message}</p>}
-            <form onSubmit={handleRegister}>
-                <div className="input-container">
-                    <input
-                        className="input-register"
-                        type="text"
-                        name="accountNumber"
-                        placeholder="Ingrese su número de celular"
-                        value={registerData.accountNumber}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="input-container">
-                    <input
-                        className="input-register"
-                        type="text"
-                        name="name"
-                        placeholder="Ingrese su nombre"
-                        value={registerData.name}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="input-container">
-                    <input
-                        className="input-register"
-                        type="email"
-                        name="email"
-                        placeholder="Ingrese su email"
-                        value={registerData.email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="input-container">
-                    <input
-                        className="input-register"
-                        type="password"
-                        name="password"
-                        placeholder="Ingrese su contraseña"
-                        value={registerData.password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="account-type">
-                    <p>Tipo de cuenta:</p>
-                    <label>
+        <div className='father-container-register'>
+            <div className="register-container">
+                <h2>Registro</h2>
+                <p>¡Es muy fácil!</p>
+                {message && <p className="message">{message}</p>}
+                <form onSubmit={handleRegister}>
+                    <div className="input-container">
+                        {/* <label className='label-register'>Número de celular</label> */}
                         <input
-                            type="radio"
-                            name="type"
-                            value="Ahorros"
-                            checked={registerData.type === 'Ahorros'}
+                            className="input-login"
+                            type="text"
+                            label="Número de celular"
+                            name="accountNumber"
+                            placeholder="Ingrese su número de celular"
+                            value={registerData.accountNumber}
                             onChange={handleChange}
                         />
-                        Ahorros
-                    </label>
-                    <label>
+                    </div>
+                    <div className="input-container">
+                        {/* <label className='label-register'>Nombre</label> */}
                         <input
-                            type="radio"
-                            name="type"
-                            value="Corriente"
-                            checked={registerData.type === 'Corriente'}
+                            className="input-login"
+                            type="text"
+                            name="name"
+                            placeholder="Ingrese su nombre"
+                            value={registerData.name}
                             onChange={handleChange}
                         />
-                        Corriente
-                    </label>
-                </div>
+                    </div>
+                    <div className="input-container">
+                        {/* <label className='label-register'>Correo</label> */}
+                        <input
+                            className="input-login"
+                            type="email"
+                            name="email"
+                            placeholder="Ingrese su email"
+                            value={registerData.email}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="input-container">
+                        {/* <label className='label-register' >Contraseña</label> */}
+                        <input
+                            className="input-login"
+                            type="password"
+                            name="password"
+                            placeholder="Ingrese su contraseña"
+                            value={registerData.password}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label className='label-register'>Tipo de cuenta</label>
+                        <select
+                            name="type"
+                            value={registerData.type}
+                            onChange={handleChange}
+                            className="input-select"
+                        >
+                            <option value="Ahorros">Ahorros</option>
+                            <option value="Corriente">Corriente</option>
+                        </select>
+                    </div>
 
-                <button type="submit" className="register-button">Registrarse</button>
-            </form>
-            <p>¿Ya estás registrado? <a href="/login">Iniciar Sesión</a></p>
+                    <button type="submit" className="login-button">Registrarse</button>
+                </form>
+                <p>¿Ya estás registrado? <a href="/login">Iniciar Sesión</a></p>
+            </div>
         </div>
-
-
-        // <div className="register-container">
-        //     <HeaderLogSign />
-        //     <h2>Registro</h2>
-        //     <p>¡Es muy fácil!</p>
-        //     {/* {message && <p className="message">{message}</p>} */}
-        //     <form onSubmit={handleRegister}>
-        //         <div className="input-container">
-        //             <input className='input-register'
-        //                 type="text"
-        //                 name="name"
-        //                 placeholder="Ingrese su nombre"
-        //                 value={registerData.name}
-
-        //             />
-        //         </div>
-        //         <div className="input-container">
-        //             <input className='input-register'
-        //                 type="email"
-        //                 placeholder="Ingrese su correo"
-        //                 value={registerData.email}
-        //                 onChange={handleChange}
-        //             />
-        //         </div>
-        //         <div className="input-container">
-        //             <input className='input-register'
-        //                 type="password"
-        //                 placeholder="Ingrese su contraseña"
-        //                 value={registerData.password}
-        //                 onChange={handleChange}
-        //             />
-        //         </div>
-        //         <div className="input-container">
-        //             <input className='input-register'
-        //                 type="text"
-        //                 placeholder="Ingrese su número de celular"
-        //                 value={registerData.phone}
-        //                 onChange={handleChange}
-        //             />
-        //         </div>
-
-        //         <div className="account-type">
-        //             <p>Tipo de cuenta:</p>
-        //             <input
-        //                 type="radio"
-        //                 value={registerData.accountType}
-        //                 checked={accountType === 'Ahorros'}
-        //                 onChange={handleChange}
-        //             />
-        //             Ahorros
-        //             <label>
-        //                 <input
-        //                     type="radio"
-        //                     value={registerData.accountType}
-        //                     checked={accountType === 'Corriente'}
-        //                     onChange={handleChange}
-        //                 />
-        //                 Corriente
-        //             </label>
-        //         </div>
-
-        //         <button type="submit" className="register-button">Registrarse</button>
-        //     </form>
-        //     <p>Ya estás registrado? <a href="/login">Iniciar Sesión</a></p>
-        // </div>
     );
 };
 

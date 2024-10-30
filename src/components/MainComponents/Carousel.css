@@ -18,6 +18,11 @@
     margin: 0;
     color: var(--neutral-dark);
     text-align: center;
+    margin-bottom: 0.5px;
+    margin-top: 0.1px;
+    font-size: 60px;
+    font-weight: 700px;
+    letter-spacing: -0.03em;
 }
 
 .left-content p {

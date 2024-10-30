@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--neutral-dark);
+    background-color: var(--primary-dark);
+    /* background-color: black; */
     padding: 5px 8px;
     height: 4.5rem;
 }
@@ -39,5 +40,4 @@
 
 .logout-button:hover {
     background: var(--danger);
-
 }

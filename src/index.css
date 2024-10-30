@@ -1,31 +1,47 @@
 :root {
-  /* Colores Primarios */
-  --primary: #007BFF;
-  --primary-dark: #0056B3;
+  /* Colores Primarios (Morados) */
+  --primary: #2c2244;
+  /* Morado principal */
+  --primary-dark: #1E1E2E;
+  /* Morado oscuro */
+  --primary-light: #7a57d1;
+  /* Morado claro */
 
-  /* Colores Secundarios */
+  /* Colores Secundarios (Verdes) */
   --secondary: #28A745;
   --secondary-dark: #218838;
   --secondary-light: #1cbd42;
   --secondary-extra-light: #68d888;
 
-  /* Colores de Advertencia */
+  /* Colores de Advertencia (Rojos) */
   --danger: #DC3545;
   --danger-dark: #C82333;
   --danger-light: #ff5757;
 
-  /* Colores Neutrales */
+  /* Colores Neutrales (Grises) */
   --neutral-light: #F8F9FA;
   --neutral-medium: #6C757D;
   --neutral-dark: #343A40;
   --neutral-extra-light: #cceef6;
+
+  /* Colores Adicionales */
+  --background-dark: #1E1E2E;
+  /* Fondo oscuro */
+  --background-light: #2f2f3f;
+  /* Fondo claro para tarjetas */
+  --text-light: #f5f5f5;
+  /* Texto claro */
+  --text-muted: #c7c7d1;
+  /* Texto sutil */
 }
+
 
 :root {
   /* Fuentes */
   /* --font-family: 'Helvetica', sans-serif; */
-  --font-family: 'Roboto', sans-serif;
+  --font-family: 'Poppins', sans-serif;
 }
+
 
 /* 
 Primario (azul): Simboliza confianza, calma y profesionalismo.

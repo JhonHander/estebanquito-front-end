@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './Login.css'
 import HeaderLogSign from '../Headers/HeaderLogSign'
 import { Navigate } from "react-router-dom";
+import { MdOutlinePhoneIphone } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 
 function Login() {
@@ -16,38 +18,43 @@ function Login() {
     }
 
     return (
-        <div className="login-container">
-            <HeaderLogSign />
-            <h2>¡Hola!</h2>
-            <p>Completa los campos requeridos</p>
-            <form onSubmit={handleLogin}>
-                <div className="input-container">
-                    <label>Usuario</label>
-                    <input className='input-login'
-                        type="text"
-                        id="username"
-                        value={user}
-                        onChange={(e) => setUser(e.target.value)}
-                        placeholder="Ingrese su usuario"
-                    />
-                </div>
-                <div className="input-container">
-                    <label>Contraseña</label>
-                    <input className='input-login'
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Ingrese su contraseña"
-                    />
-                </div>
-                <button type="submit" className="login-button" >Iniciar</button>
-            </form>
+        <div className='father-container-login'>
+            <div className="login-container">
+                {/* <HeaderLogSign /> */}
+                <h2>¡Hola!</h2>
+                <p>Completa los campos requeridos</p>
+                <form onSubmit={handleLogin}>
 
-            <p>No eres cliente? <a href="/register">Registrarse</a></p>
+                    <MdOutlinePhoneIphone />
+                    <div className="input-container">
+                        <label> Usuario</label>
+                        <input className='input-login'
+                            type="text"
+                            id="username"
+                            value={user}
+                            onChange={(e) => setUser(e.target.value)}
+                            placeholder="Número de Teléfono"
+                        />
+                    </div>
+
+                    <RiLockPasswordFill />
+                    <div className="input-container">
+                        <label>Contraseña</label>
+                        <input className='input-login'
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Contraseña"
+                        />
+                    </div>
+                    <button type="submit" className="login-button" >Iniciar</button>
+                </form>
+
+                <p>¿No eres cliente? <a href="/register">Registrarse</a></p>
+            </div>
         </div>
     );
-
 };
 
 
