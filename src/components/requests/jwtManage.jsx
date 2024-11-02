@@ -1,12 +1,12 @@
 import { jwtDecode } from 'jwt-decode';
 
-const jwtDecoded = () => {
+const currrentAccount = () => {
     const token = sessionStorage.getItem('token');
     const decoded = jwtDecode(token);
-    return decoded;
+    return decoded.numero_cuenta;
 }
 
-const savedToken = (token) => {
+const saveToken = (token) => {
     sessionStorage.setItem('token', token);
 }
 
@@ -14,4 +14,8 @@ const getToken = () => {
     return sessionStorage.getItem('token');
 }
 
-export { jwtDecoded, savedToken, getToken };
+const removeToken = () => {
+    sessionStorage.removeItem('token');
+}
+
+export { currrentAccount, saveToken, getToken, removeToken };

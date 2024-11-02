@@ -4,9 +4,10 @@ import { GrLinkDown } from "react-icons/gr";
 import "./TransactionsWithdraw.css";
 
 function TransactionsWithdraw() {
-    const [pin, setPin] = useState('');
-    const [amount, setAmount] = useState('');
     const [Loading, setLoading] = useState(false);
+
+
+    const [dataTransaction, setDataTransaction] = useState({});
 
     // Generar PIN aleatorio al cargar el componente
     useEffect(() => {
@@ -47,7 +48,7 @@ function TransactionsWithdraw() {
                 <input
                     type="text"
                     id="pin"
-                    value={pin}
+                    value={dataTransaction.pin}
                     className="pin-input"
                     readOnly
                 />
@@ -56,7 +57,7 @@ function TransactionsWithdraw() {
             <input
                 type="number"
                 placeholder="Ingresa el valor a retirar"
-                value={amount}
+                value={dataTransaction.amount}
                 className="withdraw-input"
                 onChange={handleAmountChange}
             />

@@ -2,16 +2,33 @@ import React from 'react';
 import './ManageViewBalance.css';
 import { NavLink } from "react-router-dom";
 import { GrTransaction } from "react-icons/gr";
+import { getUserInfo } from '../requests/getUserInfo';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function ManageViewBalance() {
-    const data = [
-        { tipo: 'Cuenta Corriente', numero: '123-456-789', saldo: 1500 },
-        { tipo: 'Ahorros', numero: '987-654-321', saldo: 3000 },
-    ];
+
+    const [userData, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const getData = await getUserInfo();
+            const type = await getData.tipo;
+            const accountNumber = await getData.numero_cuenta;
+            const amount = await getData.saldo;
+            if (accountNumber && type) {
+                setData([
+                    { type: type, accountNumber: accountNumber, amount: amount },
+                ]);
+            }
+        };
+        fetchUser();
+    }, []);
+
 
     return (
         <div className='saldo-container'>
-            <h1>Hola 'Hander', este es tu saldo de tu cuenta</h1>
+            <h1>Saldo</h1>
 
             <table className="saldo-table">
                 <caption>Saldo de cuentas</caption>
@@ -23,12 +40,12 @@ function ManageViewBalance() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((cuenta, index) => (
+                    {userData.map((cuenta, index) => (
                         <tr key={index}>
-                            <td>{cuenta.tipo}</td>
-                            <td>{cuenta.numero}</td>
+                            <td>{cuenta.type}</td>
+                            <td>{cuenta.accountNumber}</td>
                             {/* <td>${cuenta.saldo.toFixed(2)}</td> */}
-                            <td>${cuenta.saldo}</td>
+                            <td>${cuenta.amount}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -45,3 +62,6 @@ function ManageViewBalance() {
 }
 
 export default ManageViewBalance;
+
+
+

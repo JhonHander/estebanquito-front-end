@@ -1,37 +1,58 @@
 import React from "react";
 import { useState } from "react";
 import "./ManageViewProfile.css";
+import { getUserInfo } from "../requests/getUserInfo";
+import { useEffect } from "react";
+import { currrentAccount } from "../requests/jwtManage";
+import { updateUserInfo } from "../requests/updateUserInfo";
 
 function manageViewProfile() {
-    // Estado para los datos del perfil
-    const [profileData, setProfileData] = useState({
-        name: "Nombre del usuario",
-        email: "correo@ejemplo.com",
-        accountNumber: "123456789",
-        accountType: "Cuenta de ahorro",
-    });
 
+    const [profileData, setProfileData] = useState({});
     const [isEditing, setIsEditing] = useState(false);
 
+    useEffect(() => {
+        const fetchUser = async () => {
+            const getData = await getUserInfo();
+            setProfileData({
+                name: getData.nombre,
+                email: getData.email,
+                accountNumber: getData.numero_cuenta,
+                accountType: getData.tipo,
+            });
+        };
+        fetchUser();
+    }, []);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setProfileData({ ...profileData, [name]: value });
+        setProfileData({
+            ...profileData, [e.target.name]: e.target.value
+        });
     };
 
-    const handleUpdate = () => {
+    const handleUpdate = async () => {
         if (!validate()) return;
         const confirmUpdate = window.confirm('¿Estás seguro de actualizar los datos?');
         if (confirmUpdate) {
             setIsEditing(true);
 
+            const data = {
+                name: profileData.name,
+                email: profileData.email,
+                accountNumber: profileData.accountNumber,
+            };
+
+            const response = await updateUserInfo(data);
+
+            console.log("Respuesta de la actualización:", response);
+
             setTimeout(() => {
                 setIsEditing(false);
                 console.log("Datos actualizados:", profileData);
             }, 1500);
-
         }
     };
+
 
     const validate = () => {
         if (profileData.name === '' || profileData.email === '') {
@@ -42,7 +63,7 @@ function manageViewProfile() {
     }
 
     return (
-        <div className="profile-container">
+        <div className="profile-container" >
             <h1>Detalle perfil</h1>
             <div className="profile-details">
                 <label>
@@ -106,7 +127,7 @@ function manageViewProfile() {
                     Actualizar datos
                 </button>
             )}
-        </div>
+        </div >
     )
 }
 

@@ -6,8 +6,8 @@ import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import MainInterface from './components/MainComponents/Carousel';
 
-import GestionarVerSaldo from './components/Manage/ManageViewBalance';
-import GestionarMovimientos from './components/Manage/ManageViewTransactions';
+import GestionarVerSaldo from './components/manage/ManageViewBalance';
+import GestionarMovimientos from './components/manage/ManageMovements';
 import GestionarDetallePerfil from './components/Manage/ManageViewProfile';
 
 import TransferirDinero from './components/Transaction/TransactionsTransferMoney';

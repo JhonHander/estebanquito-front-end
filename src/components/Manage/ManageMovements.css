@@ -9,7 +9,7 @@
 }
 
 .movements-container h1 {
-
+    text-align: center;
     color: var(--neutral-dark);
 }
 
@@ -42,3 +42,21 @@
 .movements-table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+/* .movement-red {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.movement-blue {
+    background-color: rgba(0, 0, 255, 0.2);
+
+}
+
+.movement-yellow {
+    background-color: rgba(255, 255, 0, 0.2);
+}
+
+
+.movement-green {
+    background-color: rgba(0, 255, 0, 0.2);
+} */

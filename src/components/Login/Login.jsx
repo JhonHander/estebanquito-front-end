@@ -5,15 +5,16 @@ import { Navigate } from "react-router-dom";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-
-import { jwtDecoded, savedToken, getToken } from '../MainComponents/jwtManage';
-
+import { currrentAccount, saveToken, getToken } from '../requests/jwtManage';
+import { useEffect } from 'react';
 
 function Login() {
     const [loginData, setLoginData] = useState({
         accountNumber: '',
         password: '',
     })
+
+    const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate();
 
@@ -40,15 +41,17 @@ function Login() {
             const data = await response.json()
             if (response.ok) {
                 console.log('Inicio de sesión exitoso:', data)
-                savedToken(data.token)
-                const decoded = jwtDecoded()
-                console.log('Token decodificado:', decoded)
+                saveToken(data.token) //guardar el token
+
+                // const decoded = jwtDecoded()
+                // console.log('Token decodificado:', decoded)
+                setLoading(true)
 
                 setTimeout(() => {
                     if (getToken()) {
                         navigate('/')
                     }
-                }, 1000);
+                }, 1500);
             } else {
                 console.log('Error al iniciar sesión:', data.message)
             }
@@ -64,7 +67,6 @@ function Login() {
         }
         return true;
     }
-
 
     return (
         <div className='father-container-login'>
@@ -99,7 +101,9 @@ function Login() {
                             placeholder="Contraseña"
                         />
                     </div>
-                    <button type="submit" className="login-button" >Iniciar</button>
+                    <button type="submit" className="login-button" >
+                        {loading ? 'Verificando...' : 'Iniciar'}
+                    </button>
                 </form>
 
                 <p>¿No eres cliente? <a href="/register">Registrarse</a></p>

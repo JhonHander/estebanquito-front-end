@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import CarouselInterface from "./CarouselInterface";
-import { getToken } from './jwtManage';
+import { getToken } from '../requests/jwtManage';
 import "./Carousel.css";
 import reportesBoton from '../../assets/imagen-interfaz-2.png'
 import { FaArrowAltCircleRight } from "react-icons/fa";
@@ -32,7 +32,7 @@ const interfaces = [
         buttonText: "Solicitar préstamo",
         buttonLink: "/prestamos/solicitar-prestamo",
         image: prestamoBoton,
-    }
+    },
 ];
 
 function Carousel() {
