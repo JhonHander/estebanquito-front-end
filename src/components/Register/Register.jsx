@@ -46,7 +46,7 @@ function Register() {
                 setTimeout(() => {
                     // window.location.href = '/login';
                     navigate('/login');
-                }, 1000);
+                }, 1500);
             } else {
                 setMessage(data.message || 'Error al registrarse. Intentalo de nuevo o más tarde');
 

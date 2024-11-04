@@ -46,8 +46,6 @@ function transactionsTransferMoney() {
                 amount: transferData.amount,
             });
 
-
-
             // Llamar a tranferMoney y manejar la respuesta
             const result = await tranferMoney(transferData);
 
