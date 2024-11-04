@@ -1,44 +1,75 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TransactionsTransferMoney.css";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
+import { tranferMoney } from "../requests/transferMoney";
+import { getUserInfo } from "../requests/getUserInfo";
 
 function transactionsTransferMoney() {
     const [transferData, setTransferData] = useState({
-        amount: '',
         accountNumber: '',
+        destinationAccountNumber: '',
+        amount: '',
     });
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const getData = await getUserInfo();
+            setTransferData({
+                accountNumber: getData.numero_cuenta, //porque es lo que necesito de getUserInfo
+            });
+        };
+        fetchUser();
+    }, []);
+
 
     const [Loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setTransferData({ ...transferData, [name]: value });
+        setTransferData({
+            ...transferData, [e.target.name]: e.target.value
+        });
     };
 
-    const handleTransfer = () => {
+
+    const handleTransfer = async () => {
         if (!validate()) return;
 
         const confirmTransfer = window.confirm('¿Estás seguro de realizar la transferencia?');
         if (confirmTransfer) {
-            //mostrar indicador de carga
             setLoading(true);
 
-            //esto hace que la transferencia se realice después de 1 segundo y se setee todo
-            setTimeout(() => {
-                setLoading(false);
-                console.log('Transferencia enviada:', transferData);
-                setTransferData({ amount: '', accountNumber: '' });
+            setTransferData({
+                accountNumber: transferData.accountNumber,
+                destinationAccountNumber: transferData.destinationAccountNumber,
+                amount: transferData.amount,
+            });
+
+
+
+            // Llamar a tranferMoney y manejar la respuesta
+            const result = await tranferMoney(transferData);
+
+            console.log('Data:', transferData);
+
+            setLoading(false);
+            if (result.success) {
+                alert("Transferencia realizada con éxito");
+                setTransferData({ amount: '', destinationAccountNumber: '' });
+            } else {
+                alert(`Error al transferir el dinero: ${result.message}`);
             }
-                , 1500);
         }
     };
 
+
     const validate = () => {
-        if (transferData.amount === '' || transferData.accountNumber === '') {
+        if (transferData.amount === '' || transferData.destinationAccountNumber === '') {
             alert('Por favor, complete todos los campos');
             return false;
         }
-        if (transferData.amount < 0) {
+        if (transferData.amount <= 0) {
             alert('Por favor, ingrese un monto válido');
             return false;
         }
@@ -59,9 +90,9 @@ function transactionsTransferMoney() {
             />
             <input
                 type="text"
-                name="accountNumber"
-                placeholder="Ingrese el número de la cuenta"
-                value={transferData.accountNumber}
+                name="destinationAccountNumber"
+                placeholder="Ingresa el número de la cuenta"
+                value={transferData.destinationAccountNumber}
                 onChange={handleChange}
                 className="transfer-input"
                 disabled={Loading}

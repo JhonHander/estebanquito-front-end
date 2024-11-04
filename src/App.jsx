@@ -8,11 +8,11 @@ import MainInterface from './components/MainComponents/Carousel';
 
 import GestionarVerSaldo from './components/manage/ManageViewBalance';
 import GestionarMovimientos from './components/manage/ManageMovements';
-import GestionarDetallePerfil from './components/Manage/ManageViewProfile';
+import GestionarDetallePerfil from './components/manage/ManageViewProfile';
 
 import TransferirDinero from './components/Transaction/TransactionsTransferMoney';
 import Depositar from './components/Transaction/TransactionsDeposit';
-import Retirar from './components/Transaction/TransactionsWithdraw';
+import Retirar from './components/transaction/TransactionsWithdraw';
 
 import SolicitarPrestamo from './components/Loan/LoanRequest';
 
