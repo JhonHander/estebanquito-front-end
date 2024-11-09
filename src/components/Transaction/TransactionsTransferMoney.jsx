@@ -13,16 +13,26 @@ function transactionsTransferMoney() {
         amount: '',
     });
 
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         const getData = await getUserInfo();
+    //         setTransferData({
+    //             accountNumber: getData.numero_cuenta, //porque es lo que necesito de getUserInfo
+    //         });
+    //     };
+    //     fetchUser();
+    // }, []);
+
     useEffect(() => {
         const fetchUser = async () => {
             const getData = await getUserInfo();
-            setTransferData({
-                accountNumber: getData.numero_cuenta, //porque es lo que necesito de getUserInfo
-            });
+            setTransferData(prevData => ({
+                ...prevData,
+                accountNumber: getData.numero_cuenta || '' // Asegurarse de que no sea undefined
+            }));
         };
         fetchUser();
     }, []);
-
 
     const [Loading, setLoading] = useState(false);
 
@@ -81,7 +91,7 @@ function transactionsTransferMoney() {
                 type="number"
                 name="amount"
                 placeholder="Ingresa el valor a transferir"
-                value={transferData.amount}
+                value={transferData.amount || ''}
                 onChange={handleChange}
                 className="transfer-input"
                 disabled={Loading}
@@ -90,7 +100,7 @@ function transactionsTransferMoney() {
                 type="text"
                 name="destinationAccountNumber"
                 placeholder="Ingresa el número de la cuenta"
-                value={transferData.destinationAccountNumber}
+                value={transferData.destinationAccountNumber || ''}
                 onChange={handleChange}
                 className="transfer-input"
                 disabled={Loading}

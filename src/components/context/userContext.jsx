@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
         const fetchUser = async () => {
             const userData = await getUserInfo();
             setUser(userData);
-            console.log('User:::', userData);
+            console.log('User:', userData);
         };
         fetchUser();
     }, []);
