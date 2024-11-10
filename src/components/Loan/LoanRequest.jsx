@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./LoanRequest.css";
+import { askForLoan } from "../requests/askForLoan";
 
 function loanRequest() {
     const [loanData, setLoanData] = useState({
@@ -15,20 +16,23 @@ function loanRequest() {
         setLoanData({ ...loanData, [name]: value });
     };
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         if (!validate()) return;
 
         const confirmLoan = window.confirm('¿Estás seguro de solicitar el préstamo?');
         if (confirmLoan) {
             //mostrar indicador de carga
             setLoading(true);
+            // console.log('Solicitando préstamo:', loanData);
 
+            const result = await askForLoan(loanData.amount, loanData.term);
 
-            //esto hace que la transferencia se realice después de 1 segundo y se setee todo
+            // console.log('Resultado:', result);
+
             setTimeout(() => {
                 alert(`Has solicitado un préstamo de $${loanData.amount} a pagar en ${loanData.term}.`);
                 setLoading(false);
-                console.log('Préstamo solicitado:', loanData);
+                // console.log('Préstamo solicitado:', loanData);
                 setLoanData({ amount: '', term: '' });
             }
                 , 1500);
@@ -54,7 +58,7 @@ function loanRequest() {
             <input
                 type="number"
                 name="amount"
-                placeholder="Ingresa el valor a retirar"
+                placeholder="Ingresa el valor del préstamo"
                 value={loanData.amount}
                 className="withdraw-input"
                 onChange={handleChange}
@@ -70,13 +74,17 @@ function loanRequest() {
                 <option value="" disabled>
                     Selecciona el plazo que necesites
                 </option>
-                <option value="1 semana">1 semana</option>
-                <option value="2 semanas">2 semanas</option>
-                <option value="1 mes">1 mes</option>
-                <option value="2 meses">2 meses</option>
+                <option value="1">1 semana</option>
+                <option value="2">2 semanas</option>
+                <option value="4">4 semanas</option>
+                <option value="8">8 semanas</option>
             </select>
 
-            <button onClick={handleConfirm}>Confirmar</button>
+
+            <button onClick={handleConfirm}>
+                {loading ? 'Cargando...' : 'Solicitar préstamo'}
+            </button>
+
         </div>
     )
 }
