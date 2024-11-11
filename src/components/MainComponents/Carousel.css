@@ -75,7 +75,7 @@
     font-size: 3.7rem;
     cursor: pointer;
     /* color: #333; */
-    color: var(--neutral-dark);
+    color: var(--primary);
 }
 
 .left-arrow {
