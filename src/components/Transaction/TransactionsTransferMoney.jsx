@@ -7,6 +7,8 @@ import { tranferMoney } from "../requests/transferMoney";
 import { getUserInfo } from "../requests/getUserInfo";
 
 function transactionsTransferMoney() {
+    // const { user } = useContext(UserContext);
+
     const [transferData, setTransferData] = useState({
         accountNumber: '',
         destinationAccountNumber: '',
@@ -33,6 +35,7 @@ function transactionsTransferMoney() {
         };
         fetchUser();
     }, []);
+
 
     const [Loading, setLoading] = useState(false);
 

@@ -19,7 +19,7 @@
 }
 
 .saldo-table caption {
-    background-color: var(--neutral-dark);
+    background-color: var(--primary-dark);
     color: white;
     font-size: 20px;
     padding: 10px;

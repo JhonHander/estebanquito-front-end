@@ -1,11 +1,11 @@
 import { currrentAccount, getToken } from './jwtManage';
 
-export const getTransactions = async () => {
+export const getReportTotalDebts = async () => {
     try {
         const token = getToken();
         // console.log("Token:", token);
 
-        const response = await fetch('http://localhost:3000/api/getTransactionsByUser', {
+        const response = await fetch('http://localhost:3000/api/reportTotalDebts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
