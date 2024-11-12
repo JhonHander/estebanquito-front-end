@@ -25,9 +25,9 @@ Este es el primer proyecto de programación web que hago. Fue desarrollado utili
  3. Transacciones: Los usuarios pueden realizar transferencias, depósitos y retiros.
  4. Solicitudes de Préstamos: Los usuarios pueden solicitar préstamos que se vean reflejados de manera inmediata en su cuenta..
  5. Reportes Financieros (Punto extra): La plataforma genera reportes del historial financiero del usuario. Los reportes que debe mostrar NO requieren gráficas.
-   a. Ingresos totales que ha tenido como histórico
-   b. Egresos totales que ha tenido como histórico
-   c. Deudas que tiene pendientes
+a. Ingresos totales que ha tenido como histórico
+b. Egresos totales que ha tenido como histórico
+c. Deudas que tiene pendientes
 # Criterios de Aceptación
  1. Registro y Autenticación:
  ○ Losusuarios pueden registrarse con un email y contraseña.
